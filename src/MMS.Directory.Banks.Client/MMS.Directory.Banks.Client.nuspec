@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>mediamarktru</authors>
+    <projectUrl>https://github.com/mediamarkt/banks/tree/master/src/$id$/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Rest client for Banks services</description>
+    <copyright>Copyright 2017</copyright>
+    <tags>$id$</tags>
+  </metadata>
+</package>
