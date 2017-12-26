@@ -17,7 +17,7 @@ namespace MMS.Directory.Banks.WebApi.Filters
                 var ex = ctx.Exception;
                 var action = ctx.ActionContext.ActionDescriptor;
 
-                logger.Error($"{action.ControllerDescriptor.ControllerName}.{action.ActionName} error", ex);
+                logger.Error(ex, $"{action.ControllerDescriptor.ControllerName}.{action.ActionName} error");
             }
 
             return Task.FromResult<object>(null);

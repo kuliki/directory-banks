@@ -8,6 +8,7 @@ using Hangfire.Dashboard;
 using MMS.Directory.Banks.Sync.Jobs;
 using System.Configuration;
 using MMS.Directory.Banks.Client;
+using Serilog;
 
 namespace MMS.Directory.Banks.Sync
 {
@@ -31,6 +32,8 @@ namespace MMS.Directory.Banks.Sync
         private IContainer BuildContainer()
         {
             var builder = new ContainerBuilder();
+
+            builder.RegisterInstance(Log.Logger).As<ILogger>();
 
             builder.RegisterInstance((BanksClientConfiguration)ConfigurationManager.GetSection("banksClient"));
             builder.RegisterType<BanksClient>().InstancePerLifetimeScope();

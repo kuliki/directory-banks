@@ -1,15 +1,17 @@
 ﻿using MMS.Directory.Banks.Client;
+using Serilog;
 
 namespace MMS.Directory.Banks.Sync.Jobs
 {
-    public class MasterSyncJob
+    public class MasterSyncJob : JobBase
     {
-        public MasterSyncJob(BanksClient client)
+        public MasterSyncJob(BanksClient client, ILogger logger)
+            : base(logger)
         {
             Client = client;
         }
 
-        public void Execute()
+        protected override void ExecuteCore()
         {
             Client.MasterSync();
         }

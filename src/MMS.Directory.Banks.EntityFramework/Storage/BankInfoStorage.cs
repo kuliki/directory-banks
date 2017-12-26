@@ -57,6 +57,7 @@ namespace MMS.Directory.Banks.EntityFramework.Storage
                 UpdateBankData(bankData, bank);
 
                 context.SaveChanges();
+                transaction.Commit();
             }
         }
 
