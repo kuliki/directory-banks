@@ -1,4 +1,4 @@
-﻿using Microsoft.Owin.Logging;
+﻿using Serilog;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -17,7 +17,7 @@ namespace MMS.Directory.Banks.WebApi.Filters
                 var ex = ctx.Exception;
                 var action = ctx.ActionContext.ActionDescriptor;
 
-                logger.WriteError($"{ action.ActionName} error", ex);
+                logger.Error($"{action.ControllerDescriptor.ControllerName}.{action.ActionName} error", ex);
             }
 
             return Task.FromResult<object>(null);

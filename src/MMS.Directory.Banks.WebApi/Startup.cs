@@ -4,6 +4,7 @@ using MMS.Directory.Banks.EntityFramework;
 using MMS.Directory.Banks.Gms;
 using Newtonsoft.Json.Converters;
 using Owin;
+using Serilog;
 using Swashbuckle.Application;
 using System.Reflection;
 using System.Web.Http;
@@ -14,12 +15,12 @@ namespace MMS.Directory.Banks.WebApi
     {
         public void Configuration(IAppBuilder app)
         {
-            var container = BuildContainer();
             var config = new HttpConfiguration();
+            var container = BuildContainer();
 
             config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
             config.Formatters.JsonFormatter.SerializerSettings.Converters.Add(new StringEnumConverter());
-            
+
             RegisterRoutes(config);
             RegisterSwagger(config);
 
@@ -32,6 +33,8 @@ namespace MMS.Directory.Banks.WebApi
         private IContainer BuildContainer()
         {
             var builder = new ContainerBuilder();
+
+            builder.RegisterInstance(Log.Logger);
 
             builder.UseEntityFrameworkStorage();
             builder.UseBanksServices();

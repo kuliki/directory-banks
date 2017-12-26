@@ -43,7 +43,10 @@ namespace MMS.Directory.Banks.EntityFramework.Storage
             bank.AssertNotNull(nameof(bank));
 
             using (var context = CreateDataContext())
+            using (var transaction = context.Database.BeginTransaction())
             {
+                context.LockTable<DbBankInfo>(true);
+
                 var bankData = context
                     .QueryBankInfo(false)
                     .FirstOrDefault(x => x.Oid == bank.Oid);

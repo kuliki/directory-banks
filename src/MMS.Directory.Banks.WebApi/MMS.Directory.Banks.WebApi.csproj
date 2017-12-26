@@ -127,6 +127,7 @@
     <Compile Include="AppConfig.cs" />
     <Compile Include="Controlles\BanksController.cs" />
     <Compile Include="Filters\ExceptionFilter.cs" />
+    <Compile Include="Filters\ActionLoggerHandler.cs" />
     <Compile Include="HostService.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -144,6 +145,7 @@
     <None Include="app.Release.config">
       <DependentUpon>app.config</DependentUpon>
       <IsTransformFile>True</IsTransformFile>
+      <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
   </ItemGroup>

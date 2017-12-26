@@ -22,19 +22,19 @@ namespace MMS.Directory.Banks.WebApi
             });
         }
 
+        private static ILogger CreateLogger()
+        {
+            return new LoggerConfiguration().ReadFrom.AppSettings()
+                    .Enrich.FromLogContext()
+                    .CreateLogger();
+        }
+
         private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
             if (e.ExceptionObject != null)
                 Log.Logger.Fatal($"UnhandledException from '{sender}': {e.ExceptionObject.ToString()}");
             else
                 Log.Logger.Fatal($"UnhandledException");
-        }
-
-        private static ILogger CreateLogger()
-        {
-            return new LoggerConfiguration().ReadFrom.AppSettings()
-                    .Enrich.FromLogContext()
-                    .CreateLogger();
         }
     }
 }

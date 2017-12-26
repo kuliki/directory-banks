@@ -15,7 +15,7 @@ namespace MMS.Directory.Banks.EntityFramework.Data
             if (entitySet == null)
                 throw new Exception($"Unable to find entity set '{typeof(TEntity).Name}' in edm metadata");
 
-            return GetEdmPropertyValue<string>(entitySet, "Schema") + "." + GetEdmPropertyValue<string>(entitySet, "Table2");
+            return GetEdmPropertyValue<string>(entitySet, "Schema") + "." + GetEdmPropertyValue<string>(entitySet, "Table");
         }
 
         private static EntitySet GetEntitySetEdm<TEntity>(DbContext context)

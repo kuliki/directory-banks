@@ -1,11 +1,13 @@
 ﻿using MMS.Directory.Banks.Model;
 using MMS.Directory.Banks.Services;
+using MMS.Directory.Banks.WebApi.Filters;
 using System.Web.Http;
 using System.Web.Http.Description;
 
 namespace MMS.Directory.Banks.WebApi.Controlles
 {
     [RoutePrefix("api/banks")]
+    [ErrorHandler, ActionLoggerHandler]
     public class BanksController : ApiController
     {
         public BanksController(BanksService banksService)
