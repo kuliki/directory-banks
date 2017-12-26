@@ -1,6 +1,5 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Linq;
 using MMS.Directory.Banks.Model;
 
 namespace MMS.Directory.Banks.EntityFramework.Tests

@@ -57,25 +57,6 @@ namespace MMS.Directory.Banks.EntityFramework.Storage
             }
         }
 
-        //public bool DeleteBank(string bankOid)
-        //{
-        //    bankOid.AssertNotNull(nameof(bankOid));
-
-        //    using (var context = CreateDataContext())
-        //    {
-        //        var bankData = context.BankInfo.FirstOrDefault(x => x.Oid == bankOid && !x.IsDeleted);
-        //        if (bankData != null)
-        //        {
-        //            bankData.IsDeleted = true;
-        //            context.SaveChanges();
-
-        //            return true;
-        //        }
-
-        //        return false;
-        //    }
-        //}
-
         public void Sync(IReadOnlyCollection<BankHeader> masterList)
         {
             var banks = masterList.ToDictionary(x => x.Oid);
@@ -86,11 +67,10 @@ namespace MMS.Directory.Banks.EntityFramework.Storage
             {
                 context.LockTable<DbBankInfo>(true);
 
-                System.Threading.Thread.Sleep(20000);
                 var entities = context.BankInfo.ToDictionary(x => x.Oid);
 
-                var addedBanks = masterList.Where(x => !entities.ContainsKey(x.Oid));
-                foreach (var bank in addedBanks)
+                //новые банки
+                foreach (var bank in masterList.Where(x => !entities.ContainsKey(x.Oid)))
                 {
                     var bankData = context.BankInfo.Add(context.BankInfo.Create());
 
@@ -99,8 +79,8 @@ namespace MMS.Directory.Banks.EntityFramework.Storage
                     bankData.CreatedDateUtc = now;
                 }
 
-                var intersectBanks = masterList.Where(x => entities.ContainsKey(x.Oid));
-                foreach (var bank in intersectBanks)
+                //общие банки, в т.ч. те что были удалены и восстановленны в master-data
+                foreach (var bank in masterList.Where(x => entities.ContainsKey(x.Oid)))
                 {
                     var bankData = entities[bank.Oid];
 
@@ -111,8 +91,8 @@ namespace MMS.Directory.Banks.EntityFramework.Storage
                     }
                 }
 
-                var deletedBanks = entities.Values.Where(x => !banks.ContainsKey(x.Oid));
-                foreach (var bank in deletedBanks)
+                //удаленные банки
+                foreach (var bank in entities.Values.Where(x => !banks.ContainsKey(x.Oid)))
                 {
                     var bankData = entities[bank.Oid];
 

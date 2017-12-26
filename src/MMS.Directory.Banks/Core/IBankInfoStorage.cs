@@ -12,7 +12,5 @@ namespace MMS.Directory.Banks.Core
         void UpdateBank(BankInfo bank);
 
         void Sync(IReadOnlyCollection<BankHeader> banks);
-
-        //bool DeleteBank(string bankOid);
     }
 }

@@ -60,6 +60,9 @@ namespace MMS.Directory.Banks.EntityFramework.Data
         public void LockTable<T>(bool exclusive)
             where T : class
         {
+            if (Database.CurrentTransaction == null)
+                throw new InvalidOperationException("Database.CurrentTransaction required");
+
             var tableName = this.GetTableName<T>();
             var lockType = exclusive ? "X" : string.Empty;
 

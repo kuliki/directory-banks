@@ -1,5 +1,4 @@
 ﻿using MMS.Directory.Banks.Model;
-using System;
 using System.Linq;
 
 namespace MMS.Directory.Banks.EntityFramework.Data

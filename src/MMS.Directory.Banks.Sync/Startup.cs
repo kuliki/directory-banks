@@ -5,7 +5,6 @@ using Owin;
 using System.Web.Http;
 using Hangfire.Annotations;
 using Hangfire.Dashboard;
-using System;
 using MMS.Directory.Banks.Sync.Jobs;
 using System.Configuration;
 using MMS.Directory.Banks.Client;

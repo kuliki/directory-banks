@@ -126,6 +126,7 @@
   <ItemGroup>
     <Compile Include="AppConfig.cs" />
     <Compile Include="Controlles\BanksController.cs" />
+    <Compile Include="Filters\ExceptionFilter.cs" />
     <Compile Include="HostService.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
