@@ -21,6 +21,8 @@ namespace MMS.Directory.Banks.Client
             using (var client = CreateClient())
             {
                 var requestUri = $"banks";
+                if (onlyActive)
+                    requestUri += "?onlyActive=true";
 
                 var response = await client.GetAsync(requestUri);
                 response.EnsureSuccessStatusCode();
